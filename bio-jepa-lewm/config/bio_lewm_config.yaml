@@ -1,0 +1,27 @@
+env:
+  size: 64
+  particle_size: 3
+  noise_level: 0.1
+
+encoder:
+  latent_dim: 64
+  in_channels: 3
+  pretrain_samples: 800
+  pretrain_epochs: 15
+  lambda_sigreg: 50.0
+
+bnn:
+  hebb_lr: 0.15
+  decay_factor: 0.5
+  lr_dec: 0.15
+  lr_dec_bias_scale: 0.1
+
+rollout:
+  horizon: 8
+  gain_factor: 1.5
+
+training:
+  steps_train_baseline: 1000
+  steps_train_chronic: 20000
+  steps_eval: 500
+  checkpoint_interval: 5000

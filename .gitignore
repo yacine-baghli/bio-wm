@@ -1,0 +1,16 @@
+# Python environment and cache
+.venv/
+venv/
+__pycache__/
+*.pyc
+*$py.class
+
+# Data and model checkpoints
+checkpoints/
+*.pt
+*.pth
+*.npz
+
+# OS metadata
+.DS_Store
+Thumbs.db
