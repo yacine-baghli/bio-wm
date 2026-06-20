@@ -140,6 +140,9 @@ def train_and_evaluate_config(in_channels: int, use_boundary_penalty: bool, use_
                 self.weights[64 + self.active_action, :] *= decay_factor
                 self._normalize_weights()
             
+            # Precompute input current since active_position and active_action are constant during frames read
+            current_val = self.weights[self.active_position, :] + self.weights[64 + self.active_action, :]
+            
             for _ in range(frame_count):
                 frame_data = np.zeros(self.num_electrodes, dtype=np.float32)
                 frame_data[self.active_position] = 1.0
@@ -149,11 +152,6 @@ def train_and_evaluate_config(in_channels: int, use_boundary_penalty: bool, use_
                     
                 output_spikes = np.zeros(self.num_outputs, dtype=np.float32)
                 for _ in range(micro_steps_per_frame):
-                    inputs = np.zeros(self.num_inputs, dtype=np.float32)
-                    inputs[self.active_position] = 1.0
-                    inputs[64 + self.active_action] = 1.0
-                    
-                    current_val = np.dot(inputs, self.weights)
                     if self.active_boundary_penalty:
                         noise = np.random.normal(0.0, 0.5, self.num_outputs)
                     else:

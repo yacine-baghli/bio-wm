@@ -78,10 +78,11 @@ class BioWorldModelLoop:
     Links the environment state, the digital CNN encoder, and the biological network.
     Uses an online velocity-aware linear decoder mapping spikes directly to [X, Y, dX, dY].
     """
-    def __init__(self, bnn_client, use_boundary_penalty: bool = True, use_velocity_decoding: bool = True):
+    def __init__(self, bnn_client, use_boundary_penalty: bool = True, use_velocity_decoding: bool = True, gain_factor: float = 1.0):
         self.bnn = bnn_client
         self.use_boundary_penalty = use_boundary_penalty
         self.use_velocity_decoding = use_velocity_decoding
+        self.gain_factor = gain_factor
         
         # W_dec shape: [64, 4] mapping 64 electrodes to [X, Y, dX, dY]
         self.W_dec = np.zeros((64, 4), dtype=np.float32)
@@ -179,6 +180,10 @@ class BioWorldModelLoop:
             if not self.use_velocity_decoding:
                 # Force velocity to remain zero
                 y_pred[2:] = 0.0
+            else:
+                # Velocity Integration: update position using the decoded velocity scaled by gain_factor
+                y_pred[0] = y_prev[0] + self.gain_factor * y_pred[2]
+                y_pred[1] = y_prev[1] + self.gain_factor * y_pred[3]
             
             # Clip position to grid bounds to prevent diverging trajectory drift
             y_pred[0] = np.clip(y_pred[0], 0.1, 7.9)

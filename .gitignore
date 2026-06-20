@@ -1,16 +1,61 @@
-# Python environment and cache
+# ========================
+# Python
+# ========================
 .venv/
 venv/
+env/
 __pycache__/
 *.pyc
+*.pyo
 *$py.class
+*.egg-info/
+dist/
+build/
+*.egg
 
-# Data and model checkpoints
+# ========================
+# Model Checkpoints & Data
+# ========================
 checkpoints/
 *.pt
 *.pth
 *.npz
+*.onnx
+*.safetensors
+wandb/
+runs/
+logs/
 
-# OS metadata
+# ========================
+# IDE & Editors
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ========================
+# OS Metadata
+# ========================
 .DS_Store
 Thumbs.db
+Desktop.ini
+
+# ========================
+# Environment & Secrets
+# ========================
+.env
+.env.*
+
+# ========================
+# Jupyter Notebooks
+# ========================
+.ipynb_checkpoints/
+
+# ========================
+# Coverage & Testing
+# ========================
+htmlcov/
+.coverage
+.pytest_cache/

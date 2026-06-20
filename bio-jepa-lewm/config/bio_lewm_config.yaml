@@ -12,13 +12,13 @@ encoder:
 
 bnn:
   hebb_lr: 0.15
-  decay_factor: 0.5
+  decay_factor: 1.0
   lr_dec: 0.15
   lr_dec_bias_scale: 0.1
 
 rollout:
   horizon: 8
-  gain_factor: 1.5
+  gain_factor: 1.2
 
 training:
   steps_train_baseline: 1000

@@ -176,9 +176,10 @@ class BioWorldModelLoop:
                 if not self.use_velocity_decoding:
                     # Force velocity to remain zero
                     y_pred[2:] = 0.0
-                
-                # Gain Calibration: Expand the predicted displacement relative to start position
-                y_pred[:2] = c_start + self.gain_factor * (y_pred[:2] - c_start)
+                else:
+                    # Velocity Integration: update position using the decoded velocity scaled by gain_factor
+                    y_pred[0] = y_prev[0] + self.gain_factor * y_pred[2]
+                    y_pred[1] = y_prev[1] + self.gain_factor * y_pred[3]
             
             # Clip position to grid bounds to prevent diverging trajectory drift
             y_pred[0] = np.clip(y_pred[0], 0.1, 7.9)
