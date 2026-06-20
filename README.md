@@ -24,6 +24,16 @@
 
 The architecture is stabilized by **SIGReg** (Sketched Isotropic Gaussian Regularization) to prevent representation collapse, and uses STDP-inspired plasticity with configurable boundary penalties for closed-loop learning.
 
+## Demo
+
+<div align="center">
+
+![Bio-WM closed-loop simulation showing noisy observation, digital latent grid, and biological prediction rollout](demo.gif)
+
+*Ground truth → noisy observation (10% flicker) → digital latent encoding (8×8) → BNN trajectory prediction (H=8)*
+
+</div>
+
 ## Architecture
 
 ```
