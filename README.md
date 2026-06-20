@@ -163,7 +163,7 @@ All hyperparameters are centralized in [`bio_lewm_config.yaml`](bio-jepa-lewm/co
 
 This project is proprietary. See [LICENSE](LICENSE) for details.
 
-Viewing and forking for personal, non-commercial evaluation is permitted. For any other use, contact: **yacine.baghli@outlook.fr**
+Viewing and forking for personal, non-commercial evaluation is permitted. For any other use, contact: **yacine.baghli@gmail.com**
 
 ---
 
